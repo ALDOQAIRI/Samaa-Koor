@@ -38,9 +38,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
-    <!-- مكتبات فيرباس -->
+    <!-- مكتبات فيرباس (تمت إضافة مكتبة المصادقة Auth) -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
 
     <!-- كود البيانات المنظمة (Schema) ليظهر كنشاط تجاري -->
     <script type="application/ld+json">
@@ -135,7 +136,7 @@
         .logo-img {
             height: 60px;
             width: 60px;
-            content: url('https://aquasonicwater.com/wp-content/uploads/2023/05/%D8%AA%D9%83%D9%8A%D9%8A%D9%81-%D8%B4%D8%A7%D8%B1%D8%A8-2.25-%D8%AD%D8%B5%D8%A7%D9%86-%D8%A8%D8%A7%D8%B1%D8%AF-%D8%B3%D8%A7%D8%AE%D9%86-%D8%A7%D9%86%D9%81%D8%B1%D8%AA%D8%B1-%D9%85%D8%B3%D8%AA%D9%88%D8%B1%D8%AF-%D8%A7%D8%A8%D9%8A%D8%B6-1-600x600.jpg');
+            content: url('https://cdn-icons-png.flaticon.com/512/2933/2933245.png');
             object-fit: contain;
             filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
         }
@@ -867,9 +868,385 @@
 
     <!-- JavaScript -->
     <script>
-        const _0x3bd36b=_0x1520;(function(_0x2bb192,_0x1f9bb4){const _0x4853e3=_0x1520,_0x2eced1=_0x2bb192();while(!![]){try{const _0x4a78b8=parseInt(_0x4853e3(0x283))/0x1*(parseInt(_0x4853e3(0x225))/0x2)+-parseInt(_0x4853e3(0x265))/0x3+-parseInt(_0x4853e3(0x260))/0x4*(-parseInt(_0x4853e3(0x1ce))/0x5)+-parseInt(_0x4853e3(0x243))/0x6*(-parseInt(_0x4853e3(0x1c8))/0x7)+parseInt(_0x4853e3(0x251))/0x8+-parseInt(_0x4853e3(0x25f))/0x9*(parseInt(_0x4853e3(0x1fb))/0xa)+-parseInt(_0x4853e3(0x284))/0xb*(parseInt(_0x4853e3(0x22d))/0xc);if(_0x4a78b8===_0x1f9bb4)break;else _0x2eced1['push'](_0x2eced1['shift']());}catch(_0x4a6d40){_0x2eced1['push'](_0x2eced1['shift']());}}}(_0x3f9e,0x1df54));const firebaseConfig={'apiKey':_0x3bd36b(0x271),'authDomain':'samaa-38196.firebaseapp.com','databaseURL':_0x3bd36b(0x1e6),'projectId':_0x3bd36b(0x1d5),'storageBucket':_0x3bd36b(0x226),'messagingSenderId':'46441373470','appId':'1:46441373470:web:87a12b9844f5e15a00330f','measurementId':_0x3bd36b(0x27a)};!firebase['apps']['length']&&firebase[_0x3bd36b(0x228)](firebaseConfig);const db=firebase['database']();let products=[],cart=[],orders=[],settings={'adminPhone':_0x3bd36b(0x200),'lastInvoice':0x1388},editingProductId=null,currentFilter={'cat':_0x3bd36b(0x24b),'sub':null};const governorates=[_0x3bd36b(0x282),_0x3bd36b(0x257),_0x3bd36b(0x288),_0x3bd36b(0x27c),'الدقهلية',_0x3bd36b(0x21a),_0x3bd36b(0x1cb),_0x3bd36b(0x1ff),'الخربية',_0x3bd36b(0x266),_0x3bd36b(0x22c),_0x3bd36b(0x230),_0x3bd36b(0x23a),_0x3bd36b(0x1f2),_0x3bd36b(0x23e),'الفيوم',_0x3bd36b(0x276),_0x3bd36b(0x1e9),'سوهاج','قنا','الأقصر',_0x3bd36b(0x273),_0x3bd36b(0x1f1),_0x3bd36b(0x1e3),_0x3bd36b(0x1e8),'جنوب\x20سيناء',_0x3bd36b(0x22f)];document['addEventListener']('DOMContentLoaded',()=>{const _0x258e35=_0x3bd36b;initSlider(),populateGovernorates(),document[_0x258e35(0x20e)](_0x258e35(0x253))[_0x258e35(0x204)]['display']='block',db[_0x258e35(0x269)](_0x258e35(0x1f4))['on'](_0x258e35(0x26e),_0x40a197=>{const _0x1edb14=_0x258e35,_0xc0e104=_0x40a197['val']();products=_0xc0e104?Object[_0x1edb14(0x224)](_0xc0e104):[],updateDynamicFilters(),renderProducts(currentFilter[_0x1edb14(0x223)],currentFilter['sub']),renderAdminProductsTable(),document[_0x1edb14(0x20e)]('loader')[_0x1edb14(0x204)][_0x1edb14(0x281)]=_0x1edb14(0x22a);}),db[_0x258e35(0x269)](_0x258e35(0x206))['on']('value',_0x9ec587=>{const _0x3de684=_0x258e35,_0x491ef2=_0x9ec587['val']();if(_0x491ef2)settings=_0x491ef2;else db[_0x3de684(0x269)](_0x3de684(0x206))[_0x3de684(0x285)](settings);document[_0x3de684(0x20e)]('adminPhone')[_0x3de684(0x26e)]=settings[_0x3de684(0x267)]||_0x3de684(0x200);}),db['ref'](_0x258e35(0x20f))['on'](_0x258e35(0x26e),_0x27061b=>{const _0x47fe33=_0x258e35,_0x30c66d=_0x27061b[_0x47fe33(0x1ca)]();orders=_0x30c66d?Object['values'](_0x30c66d):[];});});function openModal(_0x2b0a87){const _0x3c4a70=_0x3bd36b;document[_0x3c4a70(0x20e)](_0x2b0a87)['style'][_0x3c4a70(0x281)]=_0x3c4a70(0x270);}function closeModal(_0x10c25f){const _0x13ccf3=_0x3bd36b;document[_0x13ccf3(0x20e)](_0x10c25f)[_0x13ccf3(0x204)]['display']=_0x13ccf3(0x22a);}window[_0x3bd36b(0x261)]=function(_0x52b6df){const _0x578ca5=_0x3bd36b;if(_0x52b6df['target'][_0x578ca5(0x247)]['contains'](_0x578ca5(0x23d)))_0x52b6df[_0x578ca5(0x21c)][_0x578ca5(0x204)][_0x578ca5(0x281)]=_0x578ca5(0x22a);};function populateGovernorates(){const _0x1061fc=_0x3bd36b,_0x110699=document[_0x1061fc(0x20e)](_0x1061fc(0x26f));_0x110699['innerHTML']=_0x1061fc(0x216),governorates[_0x1061fc(0x289)](_0x4541f4=>{const _0x219c7f=_0x1061fc;let _0x9b3a3b=document[_0x219c7f(0x22e)](_0x219c7f(0x25d));_0x9b3a3b[_0x219c7f(0x26e)]=_0x4541f4,_0x9b3a3b[_0x219c7f(0x1dd)]=_0x4541f4;if(_0x4541f4===_0x219c7f(0x288))_0x9b3a3b[_0x219c7f(0x1e4)]=!![];_0x110699[_0x219c7f(0x25e)](_0x9b3a3b);});}function updateDynamicFilters(){const _0x2ccc51=_0x3bd36b,_0x48c781=document['getElementById'](_0x2ccc51(0x255)),_0x428fcc=document[_0x2ccc51(0x20e)](_0x2ccc51(0x229)),_0x15b79b=[...new Set(products[_0x2ccc51(0x277)](_0x2c89f6=>_0x2c89f6[_0x2ccc51(0x223)]))][_0x2ccc51(0x1ed)](_0xead1b1=>_0xead1b1);let _0x2c03d0='<div\x20class=\x22filter-group\x22><button\x20class=\x22filter-btn\x20'+(currentFilter[_0x2ccc51(0x223)]==='all'?_0x2ccc51(0x23c):'')+_0x2ccc51(0x1d0);_0x15b79b[_0x2ccc51(0x289)](_0x5eb1a8=>{const _0x17a4a8=_0x2ccc51;_0x2c03d0+=_0x17a4a8(0x262)+(currentFilter[_0x17a4a8(0x223)]===_0x5eb1a8?_0x17a4a8(0x23c):'')+'\x22\x20onclick=\x22selectMainCategory(\x27'+_0x5eb1a8+_0x17a4a8(0x215)+_0x5eb1a8+_0x17a4a8(0x1d8);}),_0x48c781['innerHTML']=_0x2c03d0,currentFilter[_0x2ccc51(0x223)]!==_0x2ccc51(0x24b)?renderSubCategories(currentFilter[_0x2ccc51(0x223)]):_0x428fcc[_0x2ccc51(0x204)][_0x2ccc51(0x281)]=_0x2ccc51(0x22a);}function selectMainCategory(_0x3b489c,_0x45d03a){const _0x1b138c=_0x3bd36b;document[_0x1b138c(0x20c)](_0x1b138c(0x24c))['forEach'](_0x65a22e=>_0x65a22e[_0x1b138c(0x247)][_0x1b138c(0x21f)](_0x1b138c(0x23c)));if(_0x45d03a)_0x45d03a[_0x1b138c(0x247)][_0x1b138c(0x245)]('active');currentFilter[_0x1b138c(0x223)]=_0x3b489c,currentFilter[_0x1b138c(0x213)]=null,renderProducts(_0x3b489c,null);let _0x31d625=_0x3b489c===_0x1b138c(0x24b)?_0x1b138c(0x24d):'قسم:\x20'+_0x3b489c;document[_0x1b138c(0x20e)](_0x1b138c(0x1db))['innerText']=_0x31d625;if(_0x3b489c===_0x1b138c(0x24b))document[_0x1b138c(0x20e)](_0x1b138c(0x229))[_0x1b138c(0x204)][_0x1b138c(0x281)]=_0x1b138c(0x22a);else renderSubCategories(_0x3b489c);}function renderSubCategories(_0xd9f7a8){const _0x375b42=_0x3bd36b,_0x3a22f6=document[_0x375b42(0x20e)](_0x375b42(0x229)),_0x398b65=[...new Set(products[_0x375b42(0x1ed)](_0xcd764e=>_0xcd764e[_0x375b42(0x223)]===_0xd9f7a8&&_0xcd764e[_0x375b42(0x213)]&&_0xcd764e[_0x375b42(0x213)][_0x375b42(0x278)]()!=='')[_0x375b42(0x277)](_0x1f874c=>_0x1f874c[_0x375b42(0x213)]))];if(_0x398b65['length']>0x0){let _0x5b3adb=_0x375b42(0x20a)+(currentFilter[_0x375b42(0x213)]===null?_0x375b42(0x23c):'')+_0x375b42(0x221);_0x398b65['forEach'](_0x2e437e=>{const _0x5999a6=_0x375b42;_0x5b3adb+=_0x5999a6(0x20a)+(currentFilter[_0x5999a6(0x213)]===_0x2e437e?_0x5999a6(0x23c):'')+'\x22\x20onclick=\x22selectSubCategory(\x27'+_0x2e437e+_0x5999a6(0x215)+_0x2e437e+_0x5999a6(0x254);}),_0x3a22f6[_0x375b42(0x201)]=_0x5b3adb,_0x3a22f6[_0x375b42(0x204)][_0x375b42(0x281)]=_0x375b42(0x270);}else _0x3a22f6[_0x375b42(0x204)]['display']='none';}function selectSubCategory(_0x1f8388,_0x5d6fb9){const _0x4739ba=_0x3bd36b;document[_0x4739ba(0x20c)]('.sub-filter-btn')[_0x4739ba(0x289)](_0x44d725=>_0x44d725['classList'][_0x4739ba(0x21f)](_0x4739ba(0x23c)));if(_0x5d6fb9)_0x5d6fb9[_0x4739ba(0x247)][_0x4739ba(0x245)](_0x4739ba(0x23c));currentFilter[_0x4739ba(0x213)]=_0x1f8388,renderProducts(currentFilter[_0x4739ba(0x223)],_0x1f8388);}function renderProducts(_0x55953d,_0x36667b){const _0x598451=_0x3bd36b,_0x34939b=document[_0x598451(0x20e)]('offersContainer'),_0x26af07=document['getElementById'](_0x598451(0x259));_0x34939b[_0x598451(0x201)]='',_0x26af07[_0x598451(0x201)]='',products['forEach'](_0x57147a=>{const _0x519c8d=_0x598451,_0x8da680=_0x57147a[_0x519c8d(0x213)]?_0x519c8d(0x203)+_0x57147a['sub']:'',_0x3cc0d5='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22card\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+(_0x57147a[_0x519c8d(0x242)]?_0x519c8d(0x1f0):'')+_0x519c8d(0x25b)+_0x57147a[_0x519c8d(0x1fc)]+_0x519c8d(0x205)+_0x57147a[_0x519c8d(0x212)]+_0x519c8d(0x1d2)+(_0x57147a['desc']||_0x519c8d(0x1cc))+_0x519c8d(0x256)+_0x57147a[_0x519c8d(0x223)]+_0x8da680+_0x519c8d(0x279)+_0x57147a[_0x519c8d(0x212)]+_0x519c8d(0x1f8)+_0x57147a[_0x519c8d(0x239)]+_0x519c8d(0x232)+_0x57147a['id']+'\x22\x20class=\x22qty-input\x22\x20value=\x221\x22\x20min=\x221\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22btn\x22\x20onclick=\x22addToCart(\x27'+_0x57147a['id']+_0x519c8d(0x250);let _0x1cb242=![];if(_0x55953d===_0x519c8d(0x24b))_0x1cb242=!![];else{if(_0x36667b)_0x1cb242=_0x57147a[_0x519c8d(0x223)]===_0x55953d&&_0x57147a[_0x519c8d(0x213)]===_0x36667b;else _0x1cb242=_0x57147a[_0x519c8d(0x223)]===_0x55953d;}if(_0x1cb242){if(_0x57147a[_0x519c8d(0x242)])_0x34939b[_0x519c8d(0x201)]+=_0x3cc0d5;_0x26af07[_0x519c8d(0x201)]+=_0x3cc0d5;}});if(_0x26af07[_0x598451(0x201)]==='')_0x26af07[_0x598451(0x201)]=_0x598451(0x208);}function addToCart(_0x6e50b5){const _0x503c56=_0x3bd36b,_0x2c1fc6=document[_0x503c56(0x20e)](_0x503c56(0x27f)+_0x6e50b5),_0x517820=parseInt(_0x2c1fc6[_0x503c56(0x26e)])||0x1,_0x1a7b94=products[_0x503c56(0x20d)](_0x4fd268=>_0x4fd268['id']==_0x6e50b5);if(!_0x1a7b94)return;const _0x354cab=cart[_0x503c56(0x20d)](_0x571d02=>_0x571d02['id']==_0x6e50b5);if(_0x354cab)_0x354cab[_0x503c56(0x214)]+=_0x517820;else cart['push']({..._0x1a7b94,'qty':_0x517820});updateCartUI();const _0x5ad551=event[_0x503c56(0x21c)][_0x503c56(0x235)]==='BUTTON'?event['target']:event[_0x503c56(0x21c)]['parentElement'],_0x359c24=_0x5ad551['innerHTML'];_0x5ad551['innerHTML']='<i\x20class=\x22fas\x20fa-check\x22></i>\x20تم',_0x5ad551[_0x503c56(0x204)][_0x503c56(0x26d)]='#2e7d32',setTimeout(()=>{const _0x53bf19=_0x503c56;_0x5ad551[_0x53bf19(0x201)]=_0x359c24,_0x5ad551[_0x53bf19(0x204)][_0x53bf19(0x26d)]='';},0x3e8);}function updateCartUI(){const _0x397422=_0x3bd36b;document[_0x397422(0x20e)]('cartCount')[_0x397422(0x1dd)]=cart[_0x397422(0x26c)]((_0x186bf7,_0x3f02ad)=>_0x186bf7+_0x3f02ad[_0x397422(0x214)],0x0);const _0x329745=document['getElementById'](_0x397422(0x1f6));_0x329745[_0x397422(0x201)]='';let _0x58a48c=0x0;if(cart[_0x397422(0x27b)]===0x0)_0x329745[_0x397422(0x201)]=_0x397422(0x27e);cart[_0x397422(0x289)]((_0x1d65ba,_0x390df6)=>{const _0x3065a2=_0x397422;_0x58a48c+=_0x1d65ba['price']*_0x1d65ba[_0x3065a2(0x214)],_0x329745['innerHTML']+='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22display:flex;\x20justify-content:space-between;\x20align-items:center;\x20border-bottom:1px\x20solid\x20#eee;\x20padding:10px\x200;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22display:flex;\x20align-items:center;\x20gap:10px\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22'+_0x1d65ba[_0x3065a2(0x1fc)]+'\x22\x20style=\x22width:50px;\x20height:50px;\x20object-fit:contain;\x20border-radius:5px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div><h4\x20style=\x22font-size:0.9rem;\x20margin:0\x22>'+_0x1d65ba[_0x3065a2(0x212)]+_0x3065a2(0x263)+_0x1d65ba['price']+'\x20×\x20'+_0x1d65ba[_0x3065a2(0x214)]+'</small></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20onclick=\x22removeFromCart('+_0x390df6+')\x22\x20style=\x22background:var(--danger);\x20color:white;\x20border:none;\x20width:30px;\x20height:30px;\x20border-radius:50%;\x20cursor:pointer\x22><i\x20class=\x22fas\x20fa-times\x22></i></button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20';}),document['getElementById'](_0x397422(0x209))['textContent']=_0x58a48c['toLocaleString']();}function removeFromCart(_0x8ad508){const _0x4b240d=_0x3bd36b;cart[_0x4b240d(0x1f9)](_0x8ad508,0x1),updateCartUI();}function checkout(_0x595a91){const _0x46605d=_0x3bd36b;_0x595a91['preventDefault']();if(cart['length']===0x0){alert(_0x46605d(0x286));return;}const _0x2a5afd=document[_0x46605d(0x20e)]('cName')[_0x46605d(0x26e)],_0x5b5362=document[_0x46605d(0x20e)]('cPhone')[_0x46605d(0x26e)],_0xfa147b=document[_0x46605d(0x20e)](_0x46605d(0x22b))['value'],_0x584474=document[_0x46605d(0x20e)](_0x46605d(0x26f))['value'],_0x1c92f6=document['getElementById']('cartTotal')[_0x46605d(0x1dd)],_0xbe86c2=(settings[_0x46605d(0x1d4)]||0x1388)+0x1;db['ref'](_0x46605d(0x1da))['set'](_0xbe86c2);const _0x3ddb25={'invId':_0xbe86c2,'date':new Date()[_0x46605d(0x211)](),'name':_0x2a5afd,'phone':_0x5b5362,'gov':_0x584474,'address':_0xfa147b,'total':_0x1c92f6,'items':cart};db[_0x46605d(0x269)](_0x46605d(0x26b)+_0xbe86c2)[_0x46605d(0x285)](_0x3ddb25)['then'](()=>{const _0x4b2815=_0x46605d;let _0x356055=_0x4b2815(0x21e)+_0xbe86c2+_0x4b2815(0x244)+_0x2a5afd+'\x0a📱\x20*موبايل:*\x20'+_0x5b5362+_0x4b2815(0x25a)+_0x584474+_0x4b2815(0x272)+_0xfa147b+_0x4b2815(0x241);cart[_0x4b2815(0x289)](_0xec087=>{const _0xdfe428=_0x4b2815,_0x32b6db=_0xec087[_0xdfe428(0x213)]?'('+_0xec087[_0xdfe428(0x213)]+')':'';_0x356055+='-\x20'+_0xec087['name']+'\x20'+_0x32b6db+'\x20(العدد:\x20'+_0xec087[_0xdfe428(0x214)]+')\x0a';}),_0x356055+=_0x4b2815(0x217)+_0x1c92f6+_0x4b2815(0x258);const _0x2202d1=encodeURIComponent(_0x356055),_0x2a9f09=settings['adminPhone']||_0x4b2815(0x200);cart=[],updateCartUI(),closeModal(_0x4b2815(0x237)),window['open'](_0x4b2815(0x280)+_0x2a9f09+_0x4b2815(0x1d9)+_0x2202d1,_0x4b2815(0x274));})[_0x46605d(0x24e)](_0x539172=>alert(_0x46605d(0x23b)+_0x539172[_0x46605d(0x1ef)]));}function loginAdmin(){const _0x591330=_0x3bd36b,_0x33a05d=document[_0x591330(0x20e)](_0x591330(0x26a))['value'],_0x3565b3=document[_0x591330(0x20e)]('adminPass')[_0x591330(0x26e)];if(_0x33a05d===_0x591330(0x1d7)&&_0x3565b3===_0x591330(0x1de))closeModal(_0x591330(0x1fe)),document[_0x591330(0x20e)](_0x591330(0x1d1))[_0x591330(0x204)]['display']='block',renderAdminProductsTable(),window[_0x591330(0x275)](0x0,0x0);else alert('بيانات\x20خاطئة');}function logoutAdmin(){const _0x2ade0e=_0x3bd36b;document[_0x2ade0e(0x20e)]('adminDashboard')[_0x2ade0e(0x204)]['display']='none';}function saveSettings(){const _0x15691d=_0x3bd36b;db['ref'](_0x15691d(0x24a))[_0x15691d(0x285)](document[_0x15691d(0x20e)](_0x15691d(0x267))[_0x15691d(0x26e)])[_0x15691d(0x23f)](()=>alert('تم\x20حفظ\x20رقم\x20الواتساب\x20بنجاح'));}function handleProductSubmit(_0x153658){const _0x501554=_0x3bd36b;_0x153658[_0x501554(0x1e5)]();const _0x1ecb8f={'name':document[_0x501554(0x20e)](_0x501554(0x25c))['value'],'img':document[_0x501554(0x20e)](_0x501554(0x1ee))[_0x501554(0x26e)],'cat':document[_0x501554(0x20e)](_0x501554(0x240))['value'],'sub':document[_0x501554(0x20e)](_0x501554(0x27d))[_0x501554(0x26e)],'price':Number(document[_0x501554(0x20e)](_0x501554(0x210))['value']),'offer':document[_0x501554(0x20e)]('pOffer')[_0x501554(0x26e)]===_0x501554(0x219),'desc':document['getElementById'](_0x501554(0x218))['value']};if(editingProductId)_0x1ecb8f['id']=editingProductId,db['ref'](_0x501554(0x1e7)+editingProductId)['set'](_0x1ecb8f)[_0x501554(0x23f)](()=>{const _0x34afba=_0x501554;alert(_0x34afba(0x1cf)),cancelEdit();});else{const _0x643266=Date[_0x501554(0x20b)]();_0x1ecb8f['id']=_0x643266,db['ref'](_0x501554(0x1e7)+_0x643266)[_0x501554(0x285)](_0x1ecb8f)[_0x501554(0x23f)](()=>{const _0x39375e=_0x501554;alert(_0x39375e(0x1fd)),document[_0x39375e(0x20e)](_0x39375e(0x1cd))['reset']();});}}function updateCategoryName(){const _0x3ae7fe=_0x3bd36b,_0x1877f2=document[_0x3ae7fe(0x20e)](_0x3ae7fe(0x236))[_0x3ae7fe(0x26e)][_0x3ae7fe(0x278)](),_0x3aea04=document[_0x3ae7fe(0x20e)]('newCatName')[_0x3ae7fe(0x26e)]['trim']();if(!_0x1877f2||!_0x3aea04)return;let _0x362edf=0x0,_0x21932d={};products[_0x3ae7fe(0x289)](_0x5d96c7=>{const _0x25b01f=_0x3ae7fe;_0x5d96c7[_0x25b01f(0x223)]===_0x1877f2&&(_0x21932d[_0x25b01f(0x249)+_0x5d96c7['id']+_0x25b01f(0x1dc)]=_0x3aea04,_0x362edf++);});if(_0x362edf>0x0)db[_0x3ae7fe(0x269)]()[_0x3ae7fe(0x238)](_0x21932d)[_0x3ae7fe(0x23f)](()=>{const _0x3b326d=_0x3ae7fe;alert(_0x3b326d(0x252)+_0x362edf+_0x3b326d(0x248)),closeModal('catManagerModal');});else alert(_0x3ae7fe(0x21b));}function deleteCategoryRef(){const _0x5bd760=_0x3bd36b,_0x371dc1=document[_0x5bd760(0x20e)](_0x5bd760(0x236))[_0x5bd760(0x26e)][_0x5bd760(0x278)]();if(!_0x371dc1)return;confirm('هل\x20أنت\x20متأكد\x20من\x20حذف\x20قسم\x20\x22'+_0x371dc1+_0x5bd760(0x1c9))&&(products['forEach'](_0x360408=>{const _0x835298=_0x5bd760;if(_0x360408[_0x835298(0x223)]===_0x371dc1)db['ref'](_0x835298(0x1e7)+_0x360408['id'])[_0x835298(0x21f)]();}),closeModal(_0x5bd760(0x202)));}function _0x1520(_0x5e0237,_0x589e97){const _0x3f9e61=_0x3f9e();return _0x1520=function(_0x1520ad,_0x2b4a5c){_0x1520ad=_0x1520ad-0x1c8;let _0x173024=_0x3f9e61[_0x1520ad];return _0x173024;},_0x1520(_0x5e0237,_0x589e97);}function deleteProduct(_0x4d4e83){const _0x4f2600=_0x3bd36b;if(confirm(_0x4f2600(0x1e2)))db[_0x4f2600(0x269)]('products/'+_0x4d4e83)[_0x4f2600(0x21f)]();}function startEditProduct(_0x7199d7){const _0x29c1a9=_0x3bd36b,_0x3b53ff=products['find'](_0xd3c4c=>_0xd3c4c['id']===_0x7199d7);if(!_0x3b53ff)return;document[_0x29c1a9(0x20e)](_0x29c1a9(0x227))['value']=_0x3b53ff['id'],document['getElementById'](_0x29c1a9(0x25c))['value']=_0x3b53ff[_0x29c1a9(0x212)],document['getElementById'](_0x29c1a9(0x1ee))[_0x29c1a9(0x26e)]=_0x3b53ff[_0x29c1a9(0x1fc)],document[_0x29c1a9(0x20e)]('pCat')[_0x29c1a9(0x26e)]=_0x3b53ff[_0x29c1a9(0x223)],document[_0x29c1a9(0x20e)](_0x29c1a9(0x27d))[_0x29c1a9(0x26e)]=_0x3b53ff['sub']||'',document['getElementById'](_0x29c1a9(0x210))[_0x29c1a9(0x26e)]=_0x3b53ff[_0x29c1a9(0x239)],document[_0x29c1a9(0x20e)](_0x29c1a9(0x1ec))[_0x29c1a9(0x26e)]=_0x3b53ff[_0x29c1a9(0x242)][_0x29c1a9(0x1df)](),document['getElementById'](_0x29c1a9(0x218))[_0x29c1a9(0x26e)]=_0x3b53ff[_0x29c1a9(0x220)],editingProductId=_0x7199d7,document[_0x29c1a9(0x20e)]('formTitle')[_0x29c1a9(0x1dd)]=_0x29c1a9(0x1ea)+_0x3b53ff[_0x29c1a9(0x212)];const _0x54e1b9=document[_0x29c1a9(0x20e)]('submitBtn');_0x54e1b9[_0x29c1a9(0x1dd)]='حفظ\x20التعديلات',_0x54e1b9[_0x29c1a9(0x247)][_0x29c1a9(0x245)](_0x29c1a9(0x264)),document['getElementById'](_0x29c1a9(0x268))['style'][_0x29c1a9(0x281)]=_0x29c1a9(0x1d3),document[_0x29c1a9(0x20e)](_0x29c1a9(0x1cd))[_0x29c1a9(0x1eb)]({'behavior':'smooth'});}function cancelEdit(){const _0x47d8d4=_0x3bd36b;document['getElementById'](_0x47d8d4(0x1cd))[_0x47d8d4(0x234)](),editingProductId=null,document[_0x47d8d4(0x20e)](_0x47d8d4(0x24f))['textContent']=_0x47d8d4(0x1d6);const _0x2f1de1=document[_0x47d8d4(0x20e)](_0x47d8d4(0x233));_0x2f1de1[_0x47d8d4(0x1dd)]='حفظ\x20المنتج',_0x2f1de1[_0x47d8d4(0x247)]['remove'](_0x47d8d4(0x264)),document[_0x47d8d4(0x20e)](_0x47d8d4(0x268))[_0x47d8d4(0x204)]['display']=_0x47d8d4(0x22a);}function renderAdminProductsTable(){const _0x43a469=_0x3bd36b,_0x40414e=document['getElementById']('adminProductTableBody');_0x40414e[_0x43a469(0x201)]='',products[_0x43a469(0x289)](_0x10a848=>{const _0x4b3a36=_0x43a469;_0x40414e[_0x4b3a36(0x201)]+=_0x4b3a36(0x1e1)+_0x10a848[_0x4b3a36(0x1fc)]+'\x22\x20style=\x22width:40px;height:40px;object-fit:cover;border-radius:5px\x22></td><td>'+_0x10a848['name']+'</td><td>'+_0x10a848[_0x4b3a36(0x239)]+'</td><td>'+_0x10a848[_0x4b3a36(0x223)]+_0x4b3a36(0x1fa)+_0x10a848['id']+_0x4b3a36(0x287)+_0x10a848['id']+')\x22\x20style=\x22padding:5px\x2010px;\x20margin:0\x202px\x22><i\x20class=\x22fas\x20fa-trash\x22></i></button></td></tr>';});}function initSlider(){const _0x58bb39=_0x3bd36b,_0x13fd21=document[_0x58bb39(0x20c)](_0x58bb39(0x1e0));let _0x103264=0x0;setInterval(()=>{const _0x538d0f=_0x58bb39;_0x13fd21[_0x103264][_0x538d0f(0x247)][_0x538d0f(0x21f)](_0x538d0f(0x23c)),_0x103264=(_0x103264+0x1)%_0x13fd21[_0x538d0f(0x27b)],_0x13fd21[_0x103264]['classList']['add'](_0x538d0f(0x23c));},0x1388);}function exportToExcel(){const _0x5480a1=_0x3bd36b;if(orders[_0x5480a1(0x27b)]===0x0){alert(_0x5480a1(0x222));return;}const _0x5eee66=orders['map'](_0x3ba204=>({'رقم\x20الفاتورة':_0x3ba204[_0x5480a1(0x231)],'التاريخ':_0x3ba204['date'],'العميل':_0x3ba204[_0x5480a1(0x212)],'الهاتف':_0x3ba204['phone'],'العنوان':_0x3ba204[_0x5480a1(0x1f5)]+_0x5480a1(0x272)+_0x3ba204[_0x5480a1(0x1f7)],'المبلغ':_0x3ba204[_0x5480a1(0x21d)],'الأصناف':_0x3ba204[_0x5480a1(0x207)]?_0x3ba204['items'][_0x5480a1(0x277)](_0x55221b=>''+_0x55221b[_0x5480a1(0x212)])[_0x5480a1(0x246)](',\x20'):''})),_0x255a9e=XLSX[_0x5480a1(0x1f3)]['json_to_sheet'](_0x5eee66),_0x38df72=XLSX[_0x5480a1(0x1f3)]['book_new']();XLSX['utils']['book_append_sheet'](_0x38df72,_0x255a9e,'Sales'),XLSX['writeFile'](_0x38df72,'سما_كور_مبيعات.xlsx');}function _0x3f9e(){const _0x27eba5=['cartModal','update','price','الإسماعيلية','خطأ:\x20','active','modal','بني\x20سويف','then','pCat','\x0a------------------\x0a🛒\x20*المنتجات\x20المطلوبة:*\x0a','offer','1350AdLufX','\x0a------------------\x0a👤\x20*العميل:*\x20','add','join','classList','\x20منتج','/products/','settings/adminPhone','all','#categoryFilters\x20.filter-btn','أحدث\x20الأجهزة\x20والمنتجات','catch','formTitle','\x27)\x22>إضافة\x20للسلة\x20<i\x20class=\x22fas\x20fa-plus\x22></i></button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','1491360MoEAuA','تم\x20تحديث\x20','loader','</button>','categoryFilters','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22card-body\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22card-cat\x22>','الجيزة','\x20جنيه','productsContainer','\x0a📍\x20*العنوان:*\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22img-wrapper\x22\x20onclick=\x22this.classList.toggle(\x27active\x27)\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22','pName','option','appendChild','108jRqzdn','4POTqYR','onclick','<div\x20class=\x22filter-group\x22><button\x20class=\x22filter-btn\x20','</h4><small\x20style=\x22color:#777\x22>','btn-warning','272205aVkuQY','كفر\x20الشيخ','adminPhone','cancelEditBtn','ref','adminUser','orders/','reduce','background','value','cGov','flex','AIzaSyBaERAZdr8y6eXD68imolWJe2MFSnHwnaE','\x20-\x20','أسوان','_blank','scrollTo','المنيا','map','trim','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22card-title\x22>','G-3JHYR3D6EP','length','الإسكندرية','pSubCat','<p\x20style=\x22text-align:center;\x20color:#999;\x22>سلة\x20المشتريات\x20فارغة</p>','qty-','https://wa.me/','display','القاهرة','4sFnuCR','3116465nYklss','set','السلة\x20فارغة!',')\x22\x20style=\x22padding:5px\x2010px;\x20margin:0\x202px\x22><i\x20class=\x22fas\x20fa-edit\x22></i></button><button\x20class=\x22btn-danger\x22\x20onclick=\x22deleteProduct(','القليوبية','forEach','5355DRiVQK','\x22\x20وجميع\x20منتجاته؟','val','المنوفية','تواصل\x20معنا\x20لمعرفة\x20التفاصيل.','productForm','13985ZCXThK','تم\x20التعديل','\x22\x20onclick=\x22selectMainCategory(\x27all\x27,\x20this)\x22>كل\x20المنتجات</button></div>','adminDashboard','\x22\x20onerror=\x22this.src=\x27https://cdn-icons-png.flaticon.com/512/2933/2933245.png\x27\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22desc-overlay\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h4><i\x20class=\x22fas\x20fa-info-circle\x22></i>\x20المواصفات</h4>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>','inline-block','lastInvoice','samaa-38196','إضافة\x20منتج\x20جديد','admin','</button></div>','?text=','settings/lastInvoice','productsTitle','/cat','textContent','123456','toString','.slide','<tr><td\x20style=\x22padding:10px\x22><img\x20src=\x22','حذف\x20هذا\x20المنتج\x20نهائياً؟','مطروح','selected','preventDefault','https://samaa-38196-default-rtdb.firebaseio.com','products/','شمال\x20سيناء','أسيوط','تعديل:\x20','scrollIntoView','pOffer','filter','pImg','message','<span\x20class=\x22offer-tag\x22>عرض\x20خاص\x20🔥</span>','البحر\x20الأحمر','السويس','utils','products','gov','cartItems','address','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22card-price\x22>','splice','</td><td><button\x20class=\x22btn-warning\x22\x20onclick=\x22startEditProduct(','43410mqBGRA','img','تمت\x20إضافة\x20المنتج','adminLoginModal','البحيرة','201153884008','innerHTML','catManagerModal','\x20|\x20','style','\x22\x20class=\x22card-img\x22\x20alt=\x22','settings','items','<p\x20style=\x22grid-column:1/-1;\x20text-align:center;\x20color:#777;\x20font-size:1.2rem;\x22>لا\x20توجد\x20منتجات\x20حالياً\x20في\x20هذا\x20القسم.</p>','cartTotal','<button\x20class=\x22sub-filter-btn\x20','now','querySelectorAll','find','getElementById','orders','pPrice','toLocaleDateString','name','sub','qty','\x27,\x20this)\x22>','<option\x20value=\x22\x22>اختر\x20المحافظة</option>','------------------\x0a💰\x20*الإجمالي:*\x20','pDesc','true','الشرقية','القسم\x20غير\x20موجود','target','total','*طلب\x20جديد\x20-\x20شركة\x20سما\x20كور\x20❄️*\x0a*فاتورة\x20رقم:*\x20#','remove','desc','\x22\x20onclick=\x22selectSubCategory(null,\x20this)\x22>الكل</button>','لا\x20توجد\x20مبيعات\x20لتصديرها','cat','values','93754mCxDCs','samaa-38196.firebasestorage.app','pId','initializeApp','subCategoryFilters','none','cAddress','دمياط','12PifBab','createElement','الوادي\x20الجديد','بورسعيد','invId','\x20<small>جنيه</small></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22card-actions\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<input\x20type=\x22number\x22\x20id=\x22qty-','submitBtn','reset','tagName','oldCatName'];_0x3f9e=function(){return _0x27eba5;};return _0x3f9e();}
+        // إعدادات فايربيس الخاصة بـ سما كور
+        const firebaseConfig = {
+            apiKey: "AIzaSyBaERAZdr8y6eXD68imolWJe2MFSnHwnaE",
+            authDomain: "samaa-38196.firebaseapp.com",
+            databaseURL: "https://samaa-38196-default-rtdb.firebaseio.com",
+            projectId: "samaa-38196",
+            storageBucket: "samaa-38196.firebasestorage.app",
+            messagingSenderId: "46441373470",
+            appId: "1:46441373470:web:87a12b9844f5e15a00330f",
+            measurementId: "G-3JHYR3D6EP"
+        };
+
+        if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
+        const db = firebase.database();
+
+        // 1. مراقب حالة الدخول (للحماية)
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                // المستخدم مسؤول -> اظهر لوحة التحكم
+                document.getElementById('adminDashboard').style.display = 'block';
+                renderAdminProductsTable();
+                // إغلاق نافذة الدخول إذا كانت مفتوحة
+                closeModal('adminLoginModal');
+            } else {
+                // مستخدم عادي -> اخف لوحة التحكم
+                document.getElementById('adminDashboard').style.display = 'none';
+            }
+        });
+
+        let products = [];
+        let cart = [];
+        let orders = [];
+        let settings = { adminPhone: "201153884008", lastInvoice: 5000 };
+        let editingProductId = null;
+        let currentFilter = { cat: 'all', sub: null };
+
+        const governorates = ["القاهرة", "الجيزة", "القليوبية", "الإسكندرية", "الدقهلية", "الشرقية", "المنوفية", "البحيرة", "الخربية", "كفر الشيخ", "دمياط", "بورسعيد", "الإسماعيلية", "السويس", "بني سويف", "الفيوم", "المنيا", "أسيوط", "سوهاج", "قنا", "الأقصر", "أسوان", "البحر الأحمر", "مطروح", "شمال سيناء", "جنوب سيناء", "الوادي الجديد"];
+
+        document.addEventListener("DOMContentLoaded", () => {
+            initSlider();
+            populateGovernorates();
+            document.getElementById('loader').style.display = 'block';
+
+            db.ref('products').on('value', (snapshot) => {
+                const data = snapshot.val();
+                products = data ? Object.values(data) : [];
+                updateDynamicFilters();
+                renderProducts(currentFilter.cat, currentFilter.sub);
+                renderAdminProductsTable();
+                document.getElementById('loader').style.display = 'none';
+            });
+
+            db.ref('settings').on('value', (snapshot) => {
+                const data = snapshot.val();
+                if (data) settings = data; else db.ref('settings').set(settings);
+                document.getElementById('adminPhone').value = settings.adminPhone || "201153884008";
+            });
+            db.ref('orders').on('value', (snapshot) => {
+                const data = snapshot.val();
+                orders = data ? Object.values(data) : [];
+            });
+        });
+
+        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+        window.onclick = function (event) { if (event.target.classList.contains('modal')) event.target.style.display = 'none'; }
+
+        function populateGovernorates() {
+            const select = document.getElementById('cGov');
+            select.innerHTML = '<option value="">اختر المحافظة</option>';
+            governorates.forEach(gov => {
+                let option = document.createElement('option');
+                option.value = gov; option.textContent = gov;
+                if (gov === "القليوبية") option.selected = true;
+                select.appendChild(option);
+            });
+        }
+
+        function updateDynamicFilters() {
+            const filterContainer = document.getElementById('categoryFilters');
+            const subFilterContainer = document.getElementById('subCategoryFilters');
+            const categories = [...new Set(products.map(p => p.cat))].filter(c => c);
+
+            let html = `<div class="filter-group"><button class="filter-btn ${currentFilter.cat === 'all' ? 'active' : ''}" onclick="selectMainCategory('all', this)">كل المنتجات</button></div>`;
+
+            categories.forEach(cat => {
+                html += `<div class="filter-group"><button class="filter-btn ${currentFilter.cat === cat ? 'active' : ''}" onclick="selectMainCategory('${cat}', this)">${cat}</button></div>`;
+            });
+            filterContainer.innerHTML = html;
+
+            if (currentFilter.cat !== 'all') {
+                renderSubCategories(currentFilter.cat);
+            } else {
+                subFilterContainer.style.display = 'none';
+            }
+        }
+
+        function selectMainCategory(cat, element) {
+            document.querySelectorAll('#categoryFilters .filter-btn').forEach(el => el.classList.remove('active'));
+            if (element) element.classList.add('active');
+            currentFilter.cat = cat;
+            currentFilter.sub = null;
+            renderProducts(cat, null);
+            let titleText = cat === 'all' ? "أحدث الأجهزة والمنتجات" : "قسم: " + cat;
+            document.getElementById('productsTitle').innerText = titleText;
+            if (cat === 'all') document.getElementById('subCategoryFilters').style.display = 'none';
+            else renderSubCategories(cat);
+        }
+
+        function renderSubCategories(cat) {
+            const subFilterContainer = document.getElementById('subCategoryFilters');
+            const subCats = [...new Set(products.filter(p => p.cat === cat && p.sub && p.sub.trim() !== '').map(p => p.sub))];
+            if (subCats.length > 0) {
+                let html = `<button class="sub-filter-btn ${currentFilter.sub === null ? 'active' : ''}" onclick="selectSubCategory(null, this)">الكل</button>`;
+                subCats.forEach(sub => {
+                    html += `<button class="sub-filter-btn ${currentFilter.sub === sub ? 'active' : ''}" onclick="selectSubCategory('${sub}', this)">${sub}</button>`;
+                });
+                subFilterContainer.innerHTML = html;
+                subFilterContainer.style.display = 'flex';
+            } else {
+                subFilterContainer.style.display = 'none';
+            }
+        }
+
+        function selectSubCategory(sub, element) {
+            document.querySelectorAll('.sub-filter-btn').forEach(el => el.classList.remove('active'));
+            if (element) element.classList.add('active');
+            currentFilter.sub = sub;
+            renderProducts(currentFilter.cat, sub);
+        }
+
+        function renderProducts(cat, sub) {
+            const offersContainer = document.getElementById('offersContainer');
+            const productsContainer = document.getElementById('productsContainer');
+            offersContainer.innerHTML = '';
+            productsContainer.innerHTML = '';
+
+            products.forEach(p => {
+                const subCatText = p.sub ? ` | ${p.sub}` : '';
+                const cardHTML = `
+                    <div class="card">
+                        ${p.offer ? '<span class="offer-tag">عرض خاص 🔥</span>' : ''}
+                        <div class="img-wrapper" onclick="this.classList.toggle('active')">
+                            <img src="${p.img}" class="card-img" alt="${p.name}" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2933/2933245.png'">
+                            <div class="desc-overlay">
+                                <h4><i class="fas fa-info-circle"></i> المواصفات</h4>
+                                <p>${p.desc || 'تواصل معنا لمعرفة التفاصيل.'}</p>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-cat">${p.cat}${subCatText}</div>
+                            <div class="card-title">${p.name}</div>
+                            <div class="card-price">${p.price} <small>جنيه</small></div>
+                            <div class="card-actions">
+                                <input type="number" id="qty-${p.id}" class="qty-input" value="1" min="1">
+                                <button class="btn" onclick="addToCart('${p.id}')">إضافة للسلة <i class="fas fa-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                let shouldShow = false;
+                if (cat === 'all') shouldShow = true;
+                else {
+                    if (sub) shouldShow = (p.cat === cat && p.sub === sub);
+                    else shouldShow = (p.cat === cat);
+                }
+
+                if (shouldShow) {
+                    if (p.offer) offersContainer.innerHTML += cardHTML;
+                    productsContainer.innerHTML += cardHTML;
+                }
+            });
+            if (productsContainer.innerHTML === '') productsContainer.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:#777; font-size:1.2rem;">لا توجد منتجات حالياً في هذا القسم.</p>';
+        }
+
+        function addToCart(id) {
+            const qtyInput = document.getElementById(`qty-${id}`);
+            const qty = parseInt(qtyInput.value) || 1;
+            const prod = products.find(p => p.id == id);
+            if (!prod) return;
+            const exist = cart.find(i => i.id == id);
+            if (exist) exist.qty += qty;
+            else cart.push({ ...prod, qty: qty });
+            updateCartUI();
+
+            const btn = event.target.tagName === 'BUTTON' ? event.target : event.target.parentElement;
+            const oldText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> تم';
+            btn.style.background = '#2e7d32';
+            setTimeout(() => { btn.innerHTML = oldText; btn.style.background = ''; }, 1000);
+        }
+
+        function updateCartUI() {
+            document.getElementById('cartCount').textContent = cart.reduce((acc, item) => acc + item.qty, 0);
+            const cartBox = document.getElementById('cartItems');
+            cartBox.innerHTML = '';
+            let total = 0;
+            if (cart.length === 0) cartBox.innerHTML = '<p style="text-align:center; color:#999;">سلة المشتريات فارغة</p>';
+            cart.forEach((item, index) => {
+                total += item.price * item.qty;
+                cartBox.innerHTML += `
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #eee; padding:10px 0;">
+                        <div style="display:flex; align-items:center; gap:10px">
+                            <img src="${item.img}" style="width:50px; height:50px; object-fit:contain; border-radius:5px;">
+                            <div><h4 style="font-size:0.9rem; margin:0">${item.name}</h4><small style="color:#777">${item.price} × ${item.qty}</small></div>
+                        </div>
+                        <button onclick="removeFromCart(${index})" style="background:var(--danger); color:white; border:none; width:30px; height:30px; border-radius:50%; cursor:pointer"><i class="fas fa-times"></i></button>
+                    </div>
+                `;
+            });
+            document.getElementById('cartTotal').textContent = total.toLocaleString();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function checkout(e) {
+            e.preventDefault();
+            if (cart.length === 0) { alert("السلة فارغة!"); return; }
+
+            const name = document.getElementById('cName').value;
+            const phone = document.getElementById('cPhone').value;
+            const address = document.getElementById('cAddress').value;
+            const gov = document.getElementById('cGov').value;
+            const total = document.getElementById('cartTotal').textContent;
+
+            const newInvId = (settings.lastInvoice || 5000) + 1;
+            db.ref('settings/lastInvoice').set(newInvId);
+
+            const orderData = { invId: newInvId, date: new Date().toLocaleDateString(), name, phone, gov, address, total, items: cart };
+
+            db.ref('orders/' + newInvId).set(orderData).then(() => {
+                let msg = `*طلب جديد - شركة سما كور ❄️*\n*فاتورة رقم:* #${newInvId}\n------------------\n👤 *العميل:* ${name}\n📱 *موبايل:* ${phone}\n📍 *العنوان:* ${gov} - ${address}\n------------------\n🛒 *المنتجات المطلوبة:*\n`;
+                cart.forEach(item => {
+                    const subTxt = item.sub ? `(${item.sub})` : '';
+                    msg += `- ${item.name} ${subTxt} (العدد: ${item.qty})\n`;
+                });
+                msg += `------------------\n💰 *الإجمالي:* ${total} جنيه`;
+
+                const encodedMsg = encodeURIComponent(msg);
+                const targetPhone = settings.adminPhone || "201153884008";
+
+                cart = []; updateCartUI(); closeModal('cartModal');
+                window.open(`https://wa.me/${targetPhone}?text=${encodedMsg}`, '_blank');
+            }).catch(e => alert("خطأ: " + e.message));
+        }
+
+        // 2. دالة تسجيل الدخول الجديدة (المحمية)
+        function loginAdmin() {
+            const u = document.getElementById('adminUser').value;
+            const p = document.getElementById('adminPass').value;
+
+            // تحويل اسم "admin" إلى الإيميل المسجل في فايربيس
+            const email = (u === 'admin') ? 'admin@samacool.com' : u;
+
+            firebase.auth().signInWithEmailAndPassword(email, p)
+                .then((userCredential) => {
+                    alert("تم الدخول بنجاح");
+                    // لا حاجة لفتح اللوحة يدوياً، الـ onAuthStateChanged سيتكفل بذلك
+                })
+                .catch((error) => {
+                    alert("خطأ في الدخول: " + error.message);
+                });
+        }
+
+        // 3. دالة تسجيل الخروج الجديدة
+        function logoutAdmin() {
+            firebase.auth().signOut().then(() => {
+                alert("تم الخروج");
+            });
+        }
+
+        function saveSettings() {
+            db.ref('settings/adminPhone').set(document.getElementById('adminPhone').value).then(() => alert("تم حفظ رقم الواتساب بنجاح"));
+        }
+
+        function handleProductSubmit(e) {
+            e.preventDefault();
+            const newProdData = {
+                name: document.getElementById('pName').value,
+                img: document.getElementById('pImg').value,
+                cat: document.getElementById('pCat').value,
+                sub: document.getElementById('pSubCat').value,
+                price: Number(document.getElementById('pPrice').value),
+                offer: document.getElementById('pOffer').value === 'true',
+                desc: document.getElementById('pDesc').value
+            };
+
+            if (editingProductId) {
+                newProdData.id = editingProductId;
+                db.ref('products/' + editingProductId).set(newProdData).then(() => { alert("تم التعديل"); cancelEdit(); });
+            } else {
+                const newId = Date.now();
+                newProdData.id = newId;
+                db.ref('products/' + newId).set(newProdData).then(() => { alert("تمت إضافة المنتج"); document.getElementById('productForm').reset(); });
+            }
+        }
+
+        function updateCategoryName() {
+            const oldName = document.getElementById('oldCatName').value.trim();
+            const newName = document.getElementById('newCatName').value.trim();
+            if (!oldName || !newName) return;
+            let count = 0; let updates = {};
+            products.forEach(p => {
+                if (p.cat === oldName) { updates['/products/' + p.id + '/cat'] = newName; count++; }
+            });
+            if (count > 0) db.ref().update(updates).then(() => { alert(`تم تحديث ${count} منتج`); closeModal('catManagerModal'); });
+            else alert("القسم غير موجود");
+        }
+
+        function deleteCategoryRef() {
+            const cat = document.getElementById('oldCatName').value.trim();
+            if (!cat) return;
+            if (confirm(`هل أنت متأكد من حذف قسم "${cat}" وجميع منتجاته؟`)) {
+                products.forEach(p => { if (p.cat === cat) db.ref('products/' + p.id).remove(); });
+                closeModal('catManagerModal');
+            }
+        }
+
+        function deleteProduct(id) { if (confirm("حذف هذا المنتج نهائياً؟")) db.ref('products/' + id).remove(); }
+
+        function startEditProduct(id) {
+            const p = products.find(p => p.id === id);
+            if (!p) return;
+            document.getElementById('pId').value = p.id;
+            document.getElementById('pName').value = p.name;
+            document.getElementById('pImg').value = p.img;
+            document.getElementById('pCat').value = p.cat;
+            document.getElementById('pSubCat').value = p.sub || "";
+            document.getElementById('pPrice').value = p.price;
+            document.getElementById('pOffer').value = p.offer.toString();
+            document.getElementById('pDesc').value = p.desc;
+            editingProductId = id;
+            document.getElementById('formTitle').textContent = "تعديل: " + p.name;
+            const btn = document.getElementById('submitBtn');
+            btn.textContent = "حفظ التعديلات"; btn.classList.add('btn-warning');
+            document.getElementById('cancelEditBtn').style.display = 'inline-block';
+            document.getElementById('productForm').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function cancelEdit() {
+            document.getElementById('productForm').reset();
+            editingProductId = null;
+            document.getElementById('formTitle').textContent = "إضافة منتج جديد";
+            const btn = document.getElementById('submitBtn');
+            btn.textContent = "حفظ المنتج"; btn.classList.remove('btn-warning');
+            document.getElementById('cancelEditBtn').style.display = 'none';
+        }
+
+        function renderAdminProductsTable() {
+            const tbody = document.getElementById('adminProductTableBody');
+            tbody.innerHTML = '';
+            products.forEach(p => {
+                tbody.innerHTML += `<tr><td style="padding:10px"><img src="${p.img}" style="width:40px;height:40px;object-fit:cover;border-radius:5px"></td><td>${p.name}</td><td>${p.price}</td><td>${p.cat}</td><td><button class="btn-warning" onclick="startEditProduct(${p.id})" style="padding:5px 10px; margin:0 2px"><i class="fas fa-edit"></i></button><button class="btn-danger" onclick="deleteProduct(${p.id})" style="padding:5px 10px; margin:0 2px"><i class="fas fa-trash"></i></button></td></tr>`;
+            });
+        }
+
+        function initSlider() {
+            const slides = document.querySelectorAll('.slide');
+            let current = 0;
+            setInterval(() => {
+                slides[current].classList.remove('active');
+                current = (current + 1) % slides.length;
+                slides[current].classList.add('active');
+            }, 5000);
+        }
+
+        function exportToExcel() {
+            if (orders.length === 0) { alert("لا توجد مبيعات لتصديرها"); return; }
+            const data = orders.map(o => ({ "رقم الفاتورة": o.invId, "التاريخ": o.date, "العميل": o.name, "الهاتف": o.phone, "العنوان": o.gov + ' - ' + o.address, "المبلغ": o.total, "الأصناف": o.items ? o.items.map(i => `${i.name}`).join(', ') : '' }));
+            const ws = XLSX.utils.json_to_sheet(data);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Sales");
+            XLSX.writeFile(wb, "سما_كور_مبيعات.xlsx");
+        }
     </script>
 </body>
 
 </html>
-
